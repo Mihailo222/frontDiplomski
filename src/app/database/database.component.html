@@ -1,0 +1,207 @@
+<!-- Main Container -->
+<div class="main-container">
+    <div class="text-container">
+        <h1>Database Management Services</h1>
+        <button class="init-button" (click)="showPrompt('showDatabases')">Service1 - Show Databases</button>
+        <button class="init-button" (click)="showPrompt('createDatabase')">Service2 - Create Database</button>
+        <button class="init-button" (click)="showPrompt('showDatabaseUsers')">Service3 - Show DB Users</button>
+        <button class="init-button" (click)="showPrompt('makeUserDBAssociation')">Service4 - Assign DB to a User</button>
+    </div>
+</div>
+
+<!-- Prompt form for Show Databases -->
+<div class="container" *ngIf="isPromptVisible && promptType === 'showDatabases'">
+    <div class="form-wrapper">
+        <form>
+            <div class="form-group">
+                <label for="ssh_user">SSH User:</label>
+                <input type="text" id="ssh_user" [(ngModel)]="formData.hostname" name="ssh_user" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="ssh_passwd">SSH Password:</label>
+                <input type="password" id="ssh_passwd" [(ngModel)]="formData.password" name="ssh_passwd" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_ip">Database IP Address:</label>
+                <select id="db_ip" [(ngModel)]="formData.db_ip" name="db_ip" class="dropdown">
+                    <option [value]="dbServer.db_ipa">{{ dbServer.db_ipa }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="db_user">MySQL User:</label>
+                <input type="text" id="db_user" [(ngModel)]="formData.db_user" name="db_user" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_passwd">MySQL Password:</label>
+                <input type="password" id="db_passwd" [(ngModel)]="formData.db_passwd" name="db_passwd" class="input-field">
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="init-button" (click)="searchDatabases()">Search</button>
+                <button type="button" class="cancel-button" (click)="closePrompt()">Cancel</button>
+            </div>
+        </form>
+
+        <textarea id="output" rows="4" cols="50" class="input-field" readonly>{{ outputDatabases }}</textarea>
+    </div>
+</div>
+
+<!-- Prompt form for Create Database -->
+<div class="container" *ngIf="isPromptVisible && promptType === 'createDatabase'">
+    <div class="form-wrapper">
+        <form>
+            <div class="form-group">
+                <label for="hostname">Hostname:</label>
+                <input type="text" id="hostname" [(ngModel)]="formData.hostname" name="hostname" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_ipa">Database IP Address:</label>
+                <!--<input type="text" id="db_ipa" [(ngModel)]="formData.db_ip" name="db_ipa" class="input-field">-->
+                <select id="db_ip" [(ngModel)]="formData.db_ip" name="db_ip" class="input-field">
+                <option [value]="dbServer.db_ipa" class="input-field">{{ dbServer.db_ipa }}</option>
+            </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" [(ngModel)]="formData.password" name="password" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_user">MySQL User:</label>
+                <input type="text" id="db_user" [(ngModel)]="formData.db_user" name="db_user" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_passwd">MySQL Password:</label>
+                <input type="password" id="db_passwd" [(ngModel)]="formData.db_passwd" name="db_passwd" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_name">Database Name:</label>
+                <input type="text" id="db_name" [(ngModel)]="formData.db_name" name="db_name" class="input-field">
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="init-button" (click)="createDatabase()">Create</button>
+                <button type="button" class="cancel-button" (click)="closePrompt()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Prompt form for Show Database users -->
+<div class="container" *ngIf="isPromptVisible && promptType === 'showDatabaseUsers'">
+    <div class="form-wrapper">
+        <form>
+            <div class="form-group">
+                <label for="ssh_user">SSH User:</label>
+                <input type="text" id="ssh_user" [(ngModel)]="formData.hostname" name="ssh_user" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="ssh_passwd">SSH Password:</label>
+                <input type="password" id="ssh_passwd" [(ngModel)]="formData.password" name="ssh_passwd" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_ip">Database IP Address:</label>
+                <select id="db_ip" [(ngModel)]="formData.db_ip" name="db_ip" class="dropdown">
+                    <option [value]="dbServer.db_ipa">{{ dbServer.db_ipa }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="db_user">MySQL User:</label>
+                <input type="text" id="db_user" [(ngModel)]="formData.db_user" name="db_user" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_passwd">MySQL Password:</label>
+                <input type="password" id="db_passwd" [(ngModel)]="formData.db_passwd" name="db_passwd" class="input-field">
+            </div>
+
+
+
+            <div class="button-group">
+                <button type="button" class="init-button" (click)="showDatabaseUsers()">Search</button>
+                <button type="button" class="cancel-button" (click)="closePrompt()">Cancel</button>
+
+
+                <textarea id="output" rows="4" cols="50" class="input-field" readonly>{{ outputUsers }}</textarea>
+
+
+            </div>
+        </form>
+
+      
+    </div>
+</div>
+
+<!-- Prompt form for Creating New User+DB+Associating them -->
+<div class="container" *ngIf="isPromptVisible && promptType === 'makeUserDBAssociation'">
+    <div class="form-wrapper">
+        <form>
+            <div class="form-group">
+                <label for="ssh_user">SSH User:</label>
+                <input type="text" id="ssh_user" [(ngModel)]="formData.hostname" name="ssh_user" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="ssh_passwd">SSH Password:</label>
+                <input type="password" id="ssh_passwd" [(ngModel)]="formData.password" name="ssh_passwd" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_ip">Database IP Address:</label>
+                <select id="db_ip" [(ngModel)]="formData.db_ip" name="db_ip" class="dropdown">
+                    <option [value]="dbServer.db_ipa">{{ dbServer.db_ipa }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="db_user">MySQL User:</label>
+                <input type="text" id="db_user" [(ngModel)]="formData.db_user" name="db_user" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_passwd">MySQL Password:</label>
+                <input type="password" id="db_passwd" [(ngModel)]="formData.db_passwd" name="db_passwd" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="new_user">New MySQL user:</label>
+                <input type="text" id="new_user" [(ngModel)]="userDBAssociation.new_user" name="new_user" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="new_db">New MySQL database:</label>
+                <input type="text" id="new_db" [(ngModel)]="userDBAssociation.new_db" name="new_db" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="new_user_pass">new MySQL user's password:</label>
+                <input type="password" id="new_user" [(ngModel)]="userDBAssociation.new_user_pass" name="new_user_pass" class="input-field">
+            </div>
+
+
+            <div class="form-group">
+                <label for="new_user_ip">New MySQL user's IP address:</label>
+                <input type="text" id="new_user_ip" [(ngModel)]="userDBAssociation.new_user_ip" name="new_user_ip" class="input-field">
+            </div>
+
+
+            <div class="button-group">
+                <button type="button" class="init-button" (click)="makeUserDBAssociation()">Create</button>
+                <button type="button" class="cancel-button" (click)="closePrompt()">Cancel</button>
+            </div>
+        </form>
+
+    </div>
+</div>

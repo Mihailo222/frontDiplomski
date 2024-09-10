@@ -1,0 +1,22 @@
+<app-header (toggleSideBarForMe)="sideBarToggler()"></app-header>
+
+<mat-drawer-container> 
+
+
+
+    <mat-drawer mode="side" [opened]="sideBarOpen">
+        <app-sidebar>
+            
+        </app-sidebar>
+    </mat-drawer>
+     <!--mislim da ovde fali negde da se doda dashboard-->
+
+ <!--   <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+-->
+<router-outlet></router-outlet>
+
+</mat-drawer-container>
+
+<app-footer></app-footer>

@@ -1,0 +1,9 @@
+<div class="container">
+    <input type="text" class="input-field" placeholder="Hostname" [(ngModel)]="vm.hostname" name="hostname">
+    <input type="text" class="input-field" placeholder="IP Address" [(ngModel)]="vm.ip_address" name="ip_address">
+    <input type="password" class="input-field" placeholder="Password" [(ngModel)]="vm.password" name="password">
+    <button class="submit-button" (click)="onSubmit()">Submit</button>
+    <br>
+  
+    <textarea class="output-field" [value]="output" readonly></textarea>
+</div>

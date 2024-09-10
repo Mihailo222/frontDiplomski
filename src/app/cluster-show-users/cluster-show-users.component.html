@@ -1,0 +1,45 @@
+
+<div class="container" >
+    <div class="form-wrapper">
+        <form>
+            <div class="form-group">
+                <h1>Show Database Users</h1>
+                <label for="ssh_user">SSH User:</label>
+                <input type="text" id="ssh_user" [(ngModel)]="formData.hostname" name="ssh_user" class="input-field" placeholder="Enter a username for SSH authentication">
+            </div>
+
+            <div class="form-group">
+                <label for="ssh_passwd">SSH Password:</label>
+                <input type="password" id="ssh_passwd" [(ngModel)]="formData.password" name="ssh_passwd" class="input-field" placeholder="Enter a password for SSH authentication">
+            </div>
+
+            <div class="form-group">
+                <label for="db_ip">Database IP Address:</label>
+                <select id="db_ip" [(ngModel)]="formData.db_ip" name="db_ip" class="dropdown">
+                    <option [value]="dbServer.db_ipa">{{ dbServer.db_ipa }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="db_user">MySQL User:</label>
+                <input type="text" id="db_user" [(ngModel)]="formData.db_user" name="db_user" class="input-field" placeholder="Enter MySQL user's username">
+            </div>
+
+            <div class="form-group">
+                <label for="db_passwd">MySQL Password:</label>
+                <input type="password" id="db_passwd" [(ngModel)]="formData.db_passwd" name="db_passwd" class="input-field" placeholder="Enter MySQL user's password">
+            </div>
+
+
+
+            <div class="button-group">
+                <button type="button" class="init-button" (click)="showDatabaseUsers()">Search</button>
+                <button type="button" class="cancel-button" (click)="closePrompt()">Cancel</button>
+               
+            </div>
+              <textarea id="output" rows="4" cols="50" class="input-field" readonly>{{ outputUsers }}</textarea>
+        </form>
+
+      
+    </div>
+</div>

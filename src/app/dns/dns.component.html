@@ -1,0 +1,63 @@
+<!-- Main Container 
+<div class="main-container">
+    <div class="text-container">
+
+        <button class="init-button" (click)="showForm()">Host Your Domain</button>
+    </div>
+</div> -->
+
+<!-- Main Form Container (initially hidden) -->
+<div class="container" >  <!--*ngIf="formVisible"-->
+    <div class="form-wrapper">
+        <form (ngSubmit)="bringDNSUp()" #dnsForm="ngForm">
+            <div class="form-group">
+                <h1>Host Your Own Domain</h1>
+                <label for="dns-instance-dropdown">DNS Instance IP Address:</label>
+                <select id="dns-instance-dropdown" class="dropdown" [(ngModel)]="DNSServerInstance.dns_ipa" name="dns_ipa">
+                    <option [value]="DNSIP">DNS Instance 1: {{ DNSIP }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="web-server-dropdown">Available Web Server IPs:</label>
+                <select id="web-server-dropdown" class="dropdown" [(ngModel)]="DNSServerInstance.wp_ipa" name="wp_ipa">
+                    <option [value]="WEB1IP">Web Server 1: {{ WEB1IP }}</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="fqdn1">Fully Qualified Domain Name 1:</label>
+                <input type="text" id="fqdn1" class="input-field" [(ngModel)]="DNSServerInstance.fqdn1" name="fqdn1" placeholder="Enter FQDN 1">
+            </div>
+
+            <div class="form-group">
+                <label for="fqdn2">Fully Qualified Domain Name 2:</label>
+                <input type="text" id="fqdn2" class="input-field" [(ngModel)]="DNSServerInstance.fqdn2" name="fqdn2" placeholder="Enter FQDN 2">
+            </div>
+
+            <div class="form-group">
+                <label for="ssh-user">SSH User:</label>
+                <input type="text" id="ssh-user" class="input-field" [(ngModel)]="DNSServerInstance.ssh_user" name="ssh_user" placeholder="Enter SSH User">
+            </div>
+
+            <div class="form-group">
+                <label for="ssh-password">SSH Password:</label>
+                <input type="password" id="ssh-password" class="input-field" [(ngModel)]="DNSServerInstance.ssh_password" name="ssh_password" placeholder="Enter SSH Password">
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="init-button">Bring Up</button>
+                <button type="button" class="cancel-button" (click)="closeForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Success Modal -->
+<div *ngIf="showModal" class="modal-overlay">
+    <div class="modal-content">
+        <h2>Success</h2>
+        <p>You have successfully added the domain.</p>
+        <button class="modal-button" (click)="closeModal()">OK</button>
+    </div>
+</div>

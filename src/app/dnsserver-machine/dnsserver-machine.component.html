@@ -1,0 +1,50 @@
+
+<div class="users">
+    <h1>DNS Server Instance  <span class="ip-address">{{ ipAddress }}</span></h1>
+    <p><b>Bind9 Health Check:   <span class="ip-address">{{ vmAnalyzer.serviceHealth }}</span></b></p>
+    
+    <h2>User Management</h2>
+    <p><b>Users logged in now:</b> {{ vmAnalyzer.usersLoggedIn }}</p>
+    <p><b>Users logged in recently:</b></p>
+    <textarea [value]="vmAnalyzer.usersLoggedInRecently" readonly></textarea>
+
+    <h2>System information</h2>
+    <p><b>Kernel release:</b> {{ vmAnalyzer.kernelRelease }}</p>
+    <p><b>Kernel version:</b> {{ vmAnalyzer.kernelVersion  }}</p>
+    <p><b>Kernel name:</b> {{ vmAnalyzer.kernelName }}</p>
+    <p><b>Hostname:</b> {{ vmAnalyzer.hostname }}</p>
+    <p><b>Machine hardware name:</b> {{ vmAnalyzer.machineHardwareName }}</p>
+
+    <h2>Memory and CPU Utilization</h2>
+    <p><b>RAM Memory Utilization</b></p>
+    <table>
+        <thead>
+            <tr>
+            <th>TOTAL</th>
+            <th>USED</th>
+            <th>FREE</th>
+            <th>AVAILABLE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td><span>{{ vmAnalyzer.totalRAM }}</span></td>
+            <td><span>{{ vmAnalyzer.usedRAM  }}</span></td>
+            <td><span>{{ vmAnalyzer.freeRAM }}</span></td>
+            <td><span>{{ vmAnalyzer.availableRAM  }}</span></td>
+        </tbody>
+    </table>
+    <p><b>SWAP Memory Utilization</b></p>
+    <p>{{  vmAnalyzer.freeSWAP }}</p>
+
+    <h2>Proccess Management</h2>
+    <p><b>Top Proccesses And Their Memory Usage Percentage</b></p>
+    <textarea [value]="vmAnalyzer.memoryKillers" readonly></textarea>
+    <p><b>Top Proccesses And Their CPU Usage Percentage</b></p>
+    <textarea [value]="vmAnalyzer.cpuKillers" readonly></textarea>
+    <h2>Disk Usage By Root FileSystem</h2>
+    <p><b>filesystem | Type | Size | Used | Av | Use% | Mount On</b></p>
+    <p>{{ vmAnalyzer.diskUsageByRootFS }}</p>
+
+
+
+</div>

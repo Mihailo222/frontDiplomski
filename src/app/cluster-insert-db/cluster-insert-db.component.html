@@ -1,0 +1,45 @@
+<!-- Prompt form for Create Database -->
+<div class="container">
+    <div class="form-wrapper">
+        <form>
+            <h1>Insert New Database</h1>
+            <div class="form-group">
+                <label for="hostname">Hostname:</label>
+                <input type="text" id="hostname" [(ngModel)]="formData.hostname" name="hostname" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_ipa">Database IP Address:</label>
+                <!--<input type="text" id="db_ipa" [(ngModel)]="formData.db_ip" name="db_ipa" class="input-field">-->
+                <select id="db_ip" [(ngModel)]="formData.db_ip" name="db_ip" class="input-field">
+                <option [value]="dbServer.db_ipa" class="input-field">{{ dbServer.db_ipa }}</option>
+            </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" [(ngModel)]="formData.password" name="password" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_user">MySQL User:</label>
+                <input type="text" id="db_user" [(ngModel)]="formData.db_user" name="db_user" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_passwd">MySQL Password:</label>
+                <input type="password" id="db_passwd" [(ngModel)]="formData.db_passwd" name="db_passwd" class="input-field">
+            </div>
+
+            <div class="form-group">
+                <label for="db_name">Database Name:</label>
+                <input type="text" id="db_name" [(ngModel)]="formData.db_name" name="db_name" class="input-field">
+            </div>
+
+            <div class="button-group">
+                <button type="button" class="init-button" (click)="createDatabase()">Create</button>
+                <button type="button" class="cancel-button" (click)="closePrompt()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>

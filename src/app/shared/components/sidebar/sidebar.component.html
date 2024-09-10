@@ -1,0 +1,40 @@
+<mat-nav-list class="bg">
+    <div class="profile-card">
+        <div class="header">
+            <h5>admin</h5>
+            <h5>Mihailo Mahovac</h5>
+       </div>
+        <img src="../../../../assets/images/admin.png" alt="">
+    </div>
+
+    <div>
+        
+    </div>
+    <mat-divider></mat-divider>
+    
+    <h5 matSubheader>Analytics</h5>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">Dashboard</a>
+    <h5 matSubheader>DNS Server</h5>
+    <a mat-list-item routerLinkActive="list-item-active"  routerLink="/dns">host custom domain</a>
+    <h5 matSubheader>MySQL Cluster Management</h5>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/cluster-show-db">show databases</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/cluster-show-users">show users</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/cluster-insert-db">insert database</a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/db">database-user association</a>
+    <h5 matSubheader>Web Server</h5>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/ws">configure virtual hosts</a>
+
+    <mat-divider></mat-divider>
+    <h5 matSubheader>Tools</h5>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/statistics">
+    <mat-icon>import_contacts</mat-icon>    
+    Fail2Ban</a>
+
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/statistics">
+        <mat-icon>import_contacts</mat-icon>    
+        SearchDir</a>
+
+
+    
+</mat-nav-list>
+

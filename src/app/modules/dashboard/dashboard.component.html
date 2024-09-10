@@ -1,0 +1,125 @@
+<div>
+    <h6 >User Management</h6>
+    <p>Logged in now: <span class="green">{{ vmAnalyzer.usersLoggedIn }}</span></p>
+    <p>Web server private IP address: <span class="green">{{ ipAddress }}</span></p>
+</div>
+<mat-divider></mat-divider>
+
+<div>
+    <h6>System Information</h6>
+    <div>Kernel release: {{ vmAnalyzer.kernelRelease }}</div>
+    <div>Kernel version: {{ vmAnalyzer.kernelVersion }}</div>
+    <div>Kernel name: {{ vmAnalyzer.kernelName }}</div>
+    <div>Hostname: {{ vmAnalyzer.hostname }}</div>
+    <div>Machine hardware name: {{ vmAnalyzer.machineHardwareName }}</div>
+</div>
+
+<mat-divider></mat-divider>
+<h6>Memory Utilization</h6>
+<div class="tables-container">
+    
+    <table class="memory-table">
+        <thead>
+            <tr>
+            <th>TOTAL</th>
+            <th>USED</th>
+            <th>FREE</th>
+            <th>AVAILABLE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td><span>{{ vmAnalyzer.totalRAM }}</span></td>
+            <td><span>{{ vmAnalyzer.usedRAM  }}</span></td>
+            <td><span>{{ vmAnalyzer.freeRAM }}</span></td>
+            <td><span> / </span></td>
+        </tbody>
+    </table>
+</div>
+<div>
+    <table  class="swap-table">
+        <thead>
+            <tr>
+                <th>FREE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <td><span>{{  vmAnalyzer.freeSWAP }}</span></td>
+        </tbody>
+    </table>
+    <p></p>
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="container">
+
+<div class="div">
+<h6>CPU Killing Proccesses</h6>
+
+<table class="cpu-killers">
+    <thead>
+        <tr>
+        <th>% (100)</th>
+        <th>COMMAND</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let killer of cpuKillersSorted">
+        <td><span>{{ killer.value }}</span></td>
+        <td><span>{{ killer.path }}</span></td>
+       
+    </tbody>
+</table>
+</div>
+
+
+<div class="div">
+    <h6>Memory Killing Proccesses</h6>
+    
+    <table class="mem-killers">
+        <thead>
+            <tr>
+            <th>% (100)</th>
+            <th>COMMAND</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let memKiller of memKillersSorted">
+            <td><span>{{ memKiller.value }}</span></td>
+            <td><span>{{ memKiller.path }}</span></td>
+           
+        </tbody>
+    </table>
+    </div>
+
+</div>
+
+<mat-divider></mat-divider>
+
+<h6>Memory Used By Root FileSystem</h6>
+<table class="mem-by-disk">
+    <thead>
+        <tr>
+        <th>device</th>
+        <th>filesystem</th>
+        <th>size</th>
+        <th>used</th>
+        <th>available</th>
+        <th>used %</th>
+        <th>mounted on</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <td><span>{{ DUAdevice }}</span></td>
+        <td><span>{{ DUAfilesystem }}</span></td>
+        <td><span>{{ DUAsize }}</span></td>
+        <td><span>{{ DUAused }}</span></td>
+        <td><span>{{ DUAavailable }}</span></td>
+        <td><span>{{ DUAusePercent }}</span></td>
+        <td><span>{{ DUAmountedOn }}</span></td> 
+
+    </tbody>
+</table>
+
+<mat-divider></mat-divider>
+<p></p>
